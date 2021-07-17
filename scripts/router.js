@@ -10,7 +10,7 @@ export class RouterEvent {
 
       e.stopImmediatePropagation();
       e.preventDefault();
-      RouterEvent.dispatchEvent(target.getAttribute('href'));
+      RouterEvent.dispatchEvent(target.getAttribute('href'), true);
     });
   }
 
@@ -47,7 +47,10 @@ export class Router {
 
   #registerPopstateEvent() {
     window.addEventListener('popstate', (e) => {
-      this.route(location.pathname);
+      const lastpath = this.history.pop();
+      const view = this.routes.get(lastpath);
+      history.replaceState({}, 'view', this.history[this.history.length - 1] ?? '/');
+      view.remove();
     });
   }
 
@@ -58,10 +61,7 @@ export class Router {
   #processMethod(pathname) {
     switch (pathname.substr(1)) {
       case 'back':
-        const lastpath = this.history.pop();
-        const view = this.routes.get(lastpath);
-        history.replaceState({}, 'view', this.history[this.history.length - 1] ?? '/');
-        view.remove();
+        history.back();
         break;
     }
   }

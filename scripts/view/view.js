@@ -11,7 +11,7 @@ export class View {
   updateView() {
     this.element = document.createElement('div');
     this.element.innerHTML = this.template;
-    this.container.innerHTML = '';
+    this.element.classList.add('container');
     this.container.insertAdjacentElement('beforeend', this.element);
   }
 
@@ -47,9 +47,10 @@ export class View {
 }
 
 const mainTemplate = `
-<div class="container bg-primary">
+<div class="bg-primary container">
   <div>main 페이지</div>
   <div>
+    <input type="checkbox">
     <a href="/side">사이드로</a>
   </div>
 </div>
@@ -62,10 +63,11 @@ export class MainView extends View {
 }
 
 const sideTemplate = `
-<div>
+<div id="side" class="container">
   <div>side 페이지</div>
   <div>
-    <button id="button" type="button">메인가기 이건 history 쌓임</button>
+    <input type="checkbox">
+    <a href="/three">세번째 페이지</a>
     <a href="@back">뒤로가기</a>
   </div>
 </div>
@@ -77,9 +79,24 @@ export class SideView extends View {
   }
 
   render() {
-    this.slideView('right', 'fade');
-    this.element.querySelector('#button').addEventListener('click', (e) => {
-      RouterEvent.dispatchEvent('/', true);
-    });
+    this.updateView();
+    // this.slideView('down', 'right');
+  }
+}
+
+const threeTemplate = `
+<div id="side" class="container bg-orange">
+  <div>세번째 페이지</div>
+  <a href="@back">뒤로가기</a>
+</div>
+`;
+
+export class ThreeView extends View {
+  constructor(container) {
+    super(container, threeTemplate);
+  }
+
+  render() {
+    this.slideView('down', 'down');
   }
 }

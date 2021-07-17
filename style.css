@@ -17,6 +17,10 @@ body {
   background-color: cadetblue;
 }
 
+.bg-orange {
+  background-color: orange;
+}
+
 .slide-right {
   transform: translate(100vw, 0);
 }

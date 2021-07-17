@@ -74,13 +74,13 @@ export class Router {
     this.defaultRoute = view;
   }
 
-  route(pathname, isReplace) {
+  route(pathname, isPush) {
     const view = this.routes.get(pathname);
     if (view) {
-      if (!isReplace) {
-        history.replaceState({}, 'view', pathname);
-      } else {
+      if (isPush) {
         history.pushState({}, 'view', pathname);
+      } else {
+        history.replaceState({}, 'view', pathname);
       }
       view.render();
       this.history.push(pathname);

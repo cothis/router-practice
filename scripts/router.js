@@ -85,6 +85,7 @@ export class Router {
       view.render();
       this.history.push(pathname);
     } else {
+      history.replaceState({}, 'home', '/');
       this.defaultRoute.render();
     }
   }

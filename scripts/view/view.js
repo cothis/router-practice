@@ -13,7 +13,6 @@ export class View {
     this.element.innerHTML = this.template;
     this.container.innerHTML = '';
     this.container.insertAdjacentElement('beforeend', this.element);
-    this.container.classList.remove('slide-left');
   }
 
   slideView(renderDirection, removeDirection) {

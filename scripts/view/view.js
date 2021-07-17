@@ -16,9 +16,9 @@ export class View {
     this.container.classList.remove('slide-left');
   }
 
-  slideView(direction, removeDirection) {
-    if (Object.values(directions).includes(direction)) {
-      const slideClass = `slide-${direction}`;
+  slideView(renderDirection, removeDirection) {
+    if (Object.values(directions).includes(renderDirection)) {
+      const slideClass = `slide-${renderDirection}`;
 
       this.element = document.createElement('div');
       this.element.innerHTML = this.template;
@@ -28,7 +28,7 @@ export class View {
       requestAnimationFrame(() => {
         this.element.classList.remove(slideClass);
       });
-    } else throw new Error(`${direction}은 정의되지 않은 direction 입니다.`);
+    } else throw new Error(`${renderDirection}은 정의되지 않은 direction 입니다.`);
 
     this.removeDirection = removeDirection;
   }

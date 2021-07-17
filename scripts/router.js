@@ -25,6 +25,7 @@ export class RouterEvent {
 
 export class Router {
   constructor() {
+    this.history = [];
     this.routes = new Map();
 
     new RouterEvent();
@@ -57,7 +58,10 @@ export class Router {
   #processMethod(pathname) {
     switch (pathname.substr(1)) {
       case 'back':
-        history.back();
+        const lastpath = this.history.pop();
+        const view = this.routes.get(lastpath);
+        history.replaceState({}, 'view', this.history[this.history.length - 1] ?? '/');
+        view.remove();
         break;
     }
   }
@@ -73,12 +77,13 @@ export class Router {
   route(pathname, isReplace) {
     const view = this.routes.get(pathname);
     if (view) {
-      if (isReplace) {
+      if (!isReplace) {
         history.replaceState({}, 'view', pathname);
       } else {
         history.pushState({}, 'view', pathname);
       }
       view.render();
+      this.history.push(pathname);
     } else {
       this.defaultRoute.render();
     }

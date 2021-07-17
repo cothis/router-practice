@@ -1,0 +1,24 @@
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background-color: aquamarine;
+  transition: all 0.35s;
+}
+
+.slide-right {
+  transform: translate(100vw, 0);
+}
+
+.slide-left {
+  transform: translate(-100vw, 0);
+}
+
+.slide-up {
+  transform: translate(0, 100vh);
+}
+
+.slide-down {
+  transform: translate(0, -100vh);
+}

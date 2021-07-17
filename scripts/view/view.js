@@ -1,5 +1,7 @@
 import { RouterEvent } from '../router.js';
 
+const directions = ['up', 'down', 'left', 'right'];
+
 export class View {
   constructor(container, template) {
     this.container = container;
@@ -7,11 +9,41 @@ export class View {
   }
 
   updateView() {
-    this.container.innerHTML = this.template;
+    this.element = document.createElement('div');
+    this.element.innerHTML = this.template;
+    this.container.innerHTML = '';
+    this.container.insertAdjacentElement('beforeend', this.element);
+    this.container.classList.remove('slide-left');
+  }
+
+  slideView(direction, removeDirection) {
+    if (Object.values(directions).includes(direction)) {
+      const slideClass = `slide-${direction}`;
+
+      this.element = document.createElement('div');
+      this.element.innerHTML = this.template;
+      this.element.classList.add('container', slideClass);
+      this.container.insertAdjacentElement('beforeend', this.element);
+
+      requestAnimationFrame(() => {
+        this.element.classList.remove(slideClass);
+      });
+    } else throw new Error(`${direction}은 정의되지 않은 direction 입니다.`);
+
+    this.removeDirection = removeDirection;
   }
 
   render() {
     this.updateView();
+  }
+
+  remove() {
+    if (Object.values(directions).includes(this.removeDirection)) {
+      this.element.classList.add(`slide-${this.removeDirection}`);
+      this.element.addEventListener('transitionend', () => {
+        this.element.remove();
+      });
+    } else this.element.remove();
   }
 }
 
@@ -46,7 +78,7 @@ export class SideView extends View {
   }
 
   render() {
-    this.updateView();
+    this.slideView('up', 'down');
     this.container.querySelector('#button').addEventListener('click', (e) => {
       RouterEvent.dispatchEvent('/main', true);
     });

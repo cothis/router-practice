@@ -1,10 +1,20 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
+  height: 100vh;
   background-color: aquamarine;
   transition: all 0.35s;
+}
+
+.bg-primary {
+  background-color: cadetblue;
 }
 
 .slide-right {

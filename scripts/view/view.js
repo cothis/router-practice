@@ -48,7 +48,7 @@ export class View {
 }
 
 const mainTemplate = `
-<div>
+<div class="container bg-primary">
   <div>main 페이지</div>
   <div>
     <a href="/side">사이드로</a>

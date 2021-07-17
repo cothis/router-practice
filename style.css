@@ -26,9 +26,9 @@ body {
 }
 
 .slide-up {
-  transform: translate(0, 100vh);
+  transform: translate(0, -100vh);
 }
 
 .slide-down {
-  transform: translate(0, -100vh);
+  transform: translate(0, 100vh);
 }

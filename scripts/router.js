@@ -14,10 +14,10 @@ export class RouterEvent {
     });
   }
 
-  static dispatchEvent(pathname, isReplace = false) {
+  static dispatchEvent(pathname, isPush = false) {
     document.body.dispatchEvent(
       new CustomEvent('route', {
-        detail: { pathname, isReplace },
+        detail: { pathname, isPush },
       })
     );
   }

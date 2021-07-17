@@ -79,7 +79,7 @@ export class SideView extends View {
   render() {
     this.slideView('up', 'right');
     this.element.querySelector('#button').addEventListener('click', (e) => {
-      RouterEvent.dispatchEvent('/main', true);
+      RouterEvent.dispatchEvent('/', true);
     });
   }
 }

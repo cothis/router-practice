@@ -1,6 +1,6 @@
 import { RouterEvent } from '../router.js';
 
-const directions = ['up', 'down', 'left', 'right'];
+const directions = ['up', 'down', 'left', 'right', 'fade'];
 
 export class View {
   constructor(container, template) {
@@ -77,7 +77,7 @@ export class SideView extends View {
   }
 
   render() {
-    this.slideView('up', 'right');
+    this.slideView('right', 'fade');
     this.element.querySelector('#button').addEventListener('click', (e) => {
       RouterEvent.dispatchEvent('/', true);
     });

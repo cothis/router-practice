@@ -3,6 +3,10 @@ body {
   padding: 0;
 }
 
+router-link {
+  cursor: pointer;
+}
+
 .container {
   position: absolute;
   top: 0;

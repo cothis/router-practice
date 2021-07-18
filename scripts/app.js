@@ -1,5 +1,8 @@
 import { Router } from './router.js';
 import { MainView, SideView, ThreeView } from './view/view.js';
+import { Link } from './linkComponent.js';
+window.customElements.define('router-link', Link);
+
 const app = document.querySelector('#app');
 
 const router = new Router();

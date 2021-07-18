@@ -52,6 +52,7 @@ const mainTemplate = `
   <div>
     <input type="checkbox">
     <a href="/side">사이드로</a>
+    <router-link to="/side">사이드로(Custom Element)</router-link>
   </div>
 </div>
 `;
